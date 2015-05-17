@@ -24,7 +24,7 @@ RSpec.describe Kickstarter do
     context "true if the time now is 10 days after the start." do
       before { Timecop.freeze(Time.now) }
       before { campaign.start_campaign!} #first initialize the start time
-      before { campaign.completed?}
+      before { campaign.completed?} #completed? depends on the start_campaign!
       before { Timecop.travel(Time.now + 10 * 24 * 60 * 60 + 1) }
       it { is_expected.to be_completed }
     end
